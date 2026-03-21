@@ -1,0 +1,20 @@
+[project]
+name = "ml-security"
+version = "0.1.0"
+description = "ML Security Challenge Suite — adversarial attacks, perturbation detection, model extraction, and backdoor detection"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "requests",
+    "numpy",
+    "Pillow",
+]
+
+[project.optional-dependencies]
+ml = [
+    "torch",
+    "scikit-learn",
+]
+
+[project.scripts]
+ml-security = "main:main"
