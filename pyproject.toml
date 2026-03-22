@@ -1,3 +1,7 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
 [project]
 name = "ml-security"
 version = "0.1.0"
@@ -15,6 +19,12 @@ ml = [
     "torch",
     "scikit-learn",
 ]
+notebook = [
+    "jupyterlab",
+    "ipykernel",
+    "matplotlib",
+    "pandas",
+]
 
 [project.scripts]
-ml-security = "main:main"
+ml-security = "ml_security.cli:main"

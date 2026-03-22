@@ -1,5 +1,8 @@
 """API client for the ML Security challenge platform."""
 
+import os
+from pathlib import Path
+
 import requests
 
 
@@ -10,9 +13,30 @@ class ChallengeClient:
         self.api_url = api_url.rstrip("/")
         self.api_key = api_key
         self.token: str | None = None
+        self.username: str | None = None
+        self.password: str | None = None
 
         if username and password:
             self.login(username, password)
+
+    @classmethod
+    def from_env(cls, env_path: str | Path = ".env") -> "ChallengeClient":
+        """Build a client from environment variables and an optional ``.env`` file."""
+        env_values = _read_env_file(env_path)
+        api_url = os.environ.get("ML_SECURITY_API_URL") or env_values.get("ML_SECURITY_API_URL") or "https://lms-dgunh.ru"
+        api_key = os.environ.get("ML_SECURITY_API_KEY") or env_values.get("ML_SECURITY_API_KEY")
+        username = os.environ.get("ML_SECURITY_USERNAME") or env_values.get("ML_SECURITY_USERNAME")
+        password = os.environ.get("ML_SECURITY_PASSWORD") or env_values.get("ML_SECURITY_PASSWORD")
+
+        if not api_key:
+            raise ValueError("ML_SECURITY_API_KEY is required in the environment or .env file.")
+
+        return cls(
+            api_url=api_url,
+            api_key=api_key,
+            username=username,
+            password=password,
+        )
 
     def login(self, username: str, password: str) -> str:
         resp = requests.post(
@@ -158,3 +182,18 @@ class ChallengeClient:
             )
         resp.raise_for_status()
         return resp.json()
+
+
+def _read_env_file(env_path: str | Path) -> dict[str, str]:
+    path = Path(env_path)
+    if not path.exists():
+        return {}
+
+    values: dict[str, str] = {}
+    for raw_line in path.read_text().splitlines():
+        line = raw_line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, value = line.split("=", 1)
+        values[key.strip()] = value.strip().strip("'\"")
+    return values

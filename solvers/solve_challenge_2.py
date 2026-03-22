@@ -1,19 +1,7 @@
-"""Solver for Challenge 2: Adversarial Perturbation Detection.
-
-Strategy:
-  1. List all available images.
-  2. Download each image.
-  3. Analyze for adversarial perturbations (e.g., high-frequency analysis, denoising comparison).
-  4. Generate a binary mask localizing the perturbed region.
-  5. Submit the mask.
-"""
-
-import os
-
 import numpy as np
 
 from ml_security.client import ChallengeClient
-from ml_security.utils import save_image
+from ml_security.workflows import Challenge2Workflow, Challenge2WorkflowResult
 
 
 def detect_perturbation(image_path: str) -> np.ndarray:
@@ -29,35 +17,18 @@ def detect_perturbation(image_path: str) -> np.ndarray:
     return np.zeros((224, 224), dtype=np.uint8)
 
 
-def solve(client: ChallengeClient, output_dir: str = "task2_output") -> list[dict]:
-    os.makedirs(output_dir, exist_ok=True)
-
-    # Step 1: List available images
-    images = client.list_images()
-    print(f"Found {len(images)} images")
-
-    results = []
-    for img_info in images:
-        if not img_info.get("is_active", True):
-            continue
-
-        image_id = img_info["image_id"]
-        image_path = os.path.join(output_dir, f"{image_id}.png")
-        mask_path = os.path.join(output_dir, f"{image_id}_mask.png")
-
-        # Step 2: Download the image
-        client.download_image(image_id, image_path)
-
-        # Step 3: Detect perturbation and generate mask
-        mask = detect_perturbation(image_path)
-        save_image(mask, mask_path)
-
-        # Step 4: Submit the mask
-        result = client.submit_mask(mask_path, image_id)
-        print(f"  {image_id}: IoU={result['iou_score']:.3f}")
-        results.append(result)
-
-    return results
+def solve(
+    client: ChallengeClient,
+    output_dir: str = "task2_output",
+    detector=detect_perturbation,
+) -> Challenge2WorkflowResult:
+    """Run challenge 2 through the shared workflow layer."""
+    workflow = Challenge2Workflow(
+        client=client,
+        output_dir=output_dir,
+        detector=detector,
+    )
+    return workflow.run()
 
 
 if __name__ == "__main__":
@@ -72,4 +43,5 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     c = ChallengeClient(args.api_url, args.api_key, args.username, args.password)
-    solve(c, args.output_dir)
+    result = solve(c, args.output_dir)
+    print(result)
