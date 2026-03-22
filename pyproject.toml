@@ -12,6 +12,9 @@ dependencies = [
     "requests",
     "numpy",
     "Pillow",
+    "torch>=2.10.0",
+    "torchvision>=0.25.0",
+    "scipy>=1.17.1",
 ]
 
 [project.optional-dependencies]

@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Река Фонтанка</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Special+Elite&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --ink:    #18120c;
+      --paper:  #f4ede0;
+      --paper2: #ede4d2;
+      --red:    #9b1c1c;
+      --rule:   #c0b09a;
+      --caption:#5a4a38;
+    }
+
+    .reveal,
+    .reveal .slide-background { background: var(--paper) !important; }
+    .reveal .slides { text-align: left; }
+    .reveal section > * { max-width: none !important; }
+    .reveal p, .reveal div, .reveal span, .reveal q, .reveal strong, .reveal em { visibility: visible !important; }
+    .reveal h1, .reveal h2, .reveal h3 {
+      text-transform: none !important;
+      font-family: 'Playfair Display', serif !important;
+      color: var(--ink) !important;
+      letter-spacing: 0 !important;
+    }
+
+    .reveal .slides section {
+      position: relative !important;
+      width: 100% !important;
+      height: 100% !important;
+      box-sizing: border-box;
+    }
+
+    .page {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: 720px;
+      inset: auto;
+      box-sizing: border-box;
+      background: var(--paper);
+      overflow: hidden;
+      font-family: 'Old Standard TT', serif;
+      color: var(--ink);
+    }
+
+    /* shared helpers */
+    .col-rule { width: 1px; background: var(--rule); }
+    .overline {
+      font-family: 'Special Elite', cursive;
+      font-size: .46em;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 4px;
+    }
+    .pull-quote {
+      border-top: 2px solid var(--ink);
+      border-bottom: 2px solid var(--ink);
+      padding: 8px 0;
+      margin: 12px 0;
+    }
+    .pull-quote p {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: .58em;
+      line-height: 1.45;
+      margin: 0;
+    }
+    .body-text {
+      font-size: .44em;
+      line-height: 1.65;
+      color: var(--ink);
+      margin: 0 0 .55em;
+    }
+    .ph-box {
+      background: var(--paper2);
+      border: 1px solid var(--rule);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+    }
+    .ph-inner {
+      width: 78%; height: 68%;
+      border: 1px dashed var(--rule);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .ph-inner span {
+      font-family: 'Special Elite', cursive;
+      font-size: .34em;
+      color: var(--rule);
+      text-align: center;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      padding: 0 .4em;
+      line-height: 1.4;
+    }
+    .ph-cap {
+      font-family: 'Special Elite', cursive;
+      font-size: .33em;
+      color: var(--caption);
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      padding: 3px 6px;
+      border-top: 1px solid var(--rule);
+      width: 100%;
+      text-align: center;
+    }
+
+    /* ══ SLIDE 1 ══ */
+    .s1-masthead {
+      border-bottom: 3px solid var(--ink);
+      padding: 12px 38px 9px;
+      display: flex; align-items: baseline; justify-content: space-between;
+    }
+    .s1-masthead .ed {
+      font-family: 'Special Elite', cursive;
+      font-size: .46em; color: var(--caption); letter-spacing: .06em;
+    }
+    .s1-masthead .pub {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700; font-size: .82em;
+      letter-spacing: .14em; text-transform: uppercase;
+    }
+    .s1-headline {
+      padding: 14px 38px 10px;
+      border-bottom: 1.5px solid var(--ink);
+    }
+    .s1-headline .kicker {
+      font-family: 'Special Elite', cursive;
+      font-size: .46em; letter-spacing: .16em;
+      text-transform: uppercase; color: var(--red); margin-bottom: 3px;
+    }
+    .s1-headline h1 {
+      font-size: 4em !important; line-height: .93 !important;
+      font-weight: 900 !important; margin: 0 !important;
+    }
+    .s1-headline h1 em { font-style: italic; color: var(--red); }
+    .s1-headline .deck {
+      font-family: 'Old Standard TT', serif; font-style: italic;
+      font-size: .58em; color: var(--caption); margin: 7px 0 0;
+    }
+    .s1-cols {
+      display: grid; grid-template-columns: 1fr 1.5px 1fr 1.5px 1fr;
+      padding: 14px 38px 0; gap: 0; align-items: start;
+    }
+    .s1-col { padding: 0 16px; }
+    .s1-col:first-child { padding-left: 0; }
+    .s1-col:last-child  { padding-right: 0; }
+    .s1-col p {
+      font-size: .43em; line-height: 1.65; margin: 0 0 .55em;
+    }
+    .s1-col p.drop::first-letter {
+      font-family: 'Playfair Display', serif; font-weight: 900;
+      font-size: 3.4em; float: left; line-height: .82;
+      margin: .04em .06em 0 0;
+    }
+    .s1-footer {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      border-top: 2px solid var(--ink); padding: 5px 38px;
+      display: flex; justify-content: space-between;
+    }
+    .s1-footer span {
+      font-family: 'Special Elite', cursive;
+      font-size: .38em; color: var(--caption); letter-spacing: .07em;
+    }
+
+    /* ══ SLIDE 2 ══ */
+    .s2-head {
+      border-bottom: 3px double var(--ink);
+      padding: 11px 38px;
+      display: flex; align-items: center; gap: 18px;
+    }
+    .s2-head .sec {
+      font-family: 'Special Elite', cursive;
+      font-size: .46em; letter-spacing: .18em;
+      text-transform: uppercase; color: var(--red);
+      border-right: 1px solid var(--rule); padding-right: 18px;
+    }
+    .s2-head h2 {
+      font-size: 1.85em !important; font-weight: 900 !important;
+      margin: 0 !important; line-height: 1 !important;
+    }
+    .s2-body {
+      display: grid; grid-template-columns: 1fr 1.5px 1.5fr;
+      padding: 18px 38px; gap: 0; align-items: start;
+    }
+    .s2-left { padding-right: 26px; }
+    .s2-right { padding-left: 26px; }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900; font-size: 2.7em; line-height: 1;
+    }
+    .stat-label {
+      font-family: 'Old Standard TT', serif;
+      font-size: .43em; color: var(--caption);
+      border-top: 1px solid var(--rule);
+      padding-top: 2px; margin-top: 1px; line-height: 1.4;
+      margin-bottom: 16px;
+    }
+
+    /* ══ SLIDE 3 ══ */
+    .s3-head {
+      background: var(--ink); color: var(--paper);
+      padding: 12px 38px;
+      display: flex; align-items: baseline; gap: 16px;
+    }
+    .s3-head .sec {
+      font-family: 'Special Elite', cursive;
+      font-size: .46em; letter-spacing: .16em;
+      text-transform: uppercase; color: #b09070;
+      border-right: 1px solid #604030; padding-right: 16px;
+    }
+    .s3-head h2 {
+      font-size: 1.85em !important; font-weight: 900 !important;
+      margin: 0 !important; line-height: 1 !important;
+      color: var(--paper) !important;
+    }
+    .s3-body {
+      display: grid; grid-template-columns: 1fr 1.5px 1fr;
+      padding: 16px 38px; gap: 0; align-items: start;
+    }
+    .s3-left { padding-right: 22px; }
+    .s3-right { padding-left: 22px; }
+    .tl-item {
+      display: grid; grid-template-columns: 62px 1px 1fr;
+      gap: 0 10px; margin-bottom: 14px; align-items: start;
+    }
+    .tl-year {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900; font-size: .8em; color: var(--red);
+      line-height: 1.1; text-align: right;
+    }
+    .tl-line { background: var(--rule); width: 1px; min-height: 38px; }
+    .tl-text { font-size: .43em; line-height: 1.6; padding-top: 1px; }
+    .tl-text strong { font-weight: 700; display: block; margin-bottom: 1px; }
+
+    /* ══ SLIDE 4 ══ */
+    .s4-head {
+      border-bottom: 1.5px solid var(--ink);
+      padding: 10px 38px;
+      display: flex; align-items: baseline; justify-content: space-between;
+    }
+    .s4-head h2 {
+      font-size: 2em !important; font-style: italic !important;
+      font-weight: 700 !important; margin: 0 !important; line-height: 1 !important;
+    }
+    .s4-head .book-tag {
+      font-family: 'Special Elite', cursive;
+      font-size: .42em; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--caption);
+      text-align: right; line-height: 1.5;
+    }
+    .s4-body {
+      display: grid; grid-template-columns: 1fr 1.5px 1fr 1.5px .82fr;
+      padding: 16px 38px; gap: 0; align-items: start;
+    }
+    .s4-col { padding: 0 16px; }
+    .s4-col:first-child { padding-left: 0; }
+    .s4-col:last-child  { padding-right: 0; }
+    .block-q {
+      border-left: 3px solid var(--red);
+      padding: 5px 0 5px 10px; margin-bottom: 10px;
+    }
+    .block-q q {
+      font-family: 'Playfair Display', serif; font-style: italic;
+      font-size: .52em; line-height: 1.55; quotes: none;
+    }
+    .block-q .attr {
+      font-family: 'Special Elite', cursive;
+      font-size: .36em; color: var(--caption);
+      letter-spacing: .06em; margin-top: 5px; display: block;
+    }
+
+    /* ══ SLIDE 5 ══ */
+    .s5-head {
+      border-bottom: 3px solid var(--ink); padding: 10px 38px;
+    }
+    .s5-head h2 {
+      font-size: 1.95em !important; font-weight: 900 !important;
+      margin: 0 !important; line-height: 1 !important;
+    }
+    .s5-body {
+      display: grid; grid-template-columns: 1.1fr 1px 1.1fr 1px 1fr;
+      padding: 16px 38px; gap: 0; align-items: start;
+    }
+    .s5-act { padding: 0 16px; }
+    .s5-act:first-child { padding-left: 0; }
+    .s5-act:last-child  { padding-right: 0; }
+    .act-head {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700; font-size: .68em;
+      border-bottom: 1.5px solid var(--ink);
+      padding-bottom: 3px; margin-bottom: 7px; line-height: 1.15;
+    }
+
+    /* ══ SLIDE 6 ══ */
+    .s6-body {
+      display: grid; grid-template-columns: 1.5fr 1.5px 1fr;
+      padding: 26px 38px 16px; gap: 0; align-items: start;
+    }
+    .s6-left { padding-right: 28px; }
+    .s6-right { padding-left: 28px; }
+    .s6-left h2 {
+      font-size: 2.7em !important; font-weight: 900 !important;
+      line-height: .93 !important; margin: 0 0 10px !important;
+    }
+    .s6-left h2 em { font-style: italic; color: var(--red); }
+    .s6-close {
+      font-size: .45em; line-height: 1.7; margin: 0 0 .55em;
+    }
+    .s6-close:first-of-type::first-letter {
+      font-family: 'Playfair Display', serif; font-weight: 900;
+      font-size: 3.2em; float: left; line-height: .82;
+      margin: .04em .06em 0 0;
+    }
+    .s6-footer {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      border-top: 3px double var(--ink); padding: 6px 38px;
+      display: flex; justify-content: space-between;
+    }
+    .s6-footer span {
+      font-family: 'Special Elite', cursive;
+      font-size: .4em; color: var(--caption); letter-spacing: .07em;
+    }
+    .s6-footer .red { color: var(--red); }
+  </style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+  <!-- ══ SLIDE 1 ══ -->
+  <section>
+    <div class="page">
+      <div class="s1-masthead">
+        <span class="ed">Санкт-Петербург · Урок X</span>
+        <span class="pub">Достопримечательности города</span>
+        <span class="ed">Зима · 2026</span>
+      </div>
+
+      <div class="s1-headline">
+        <div class="kicker">Репортаж с набережной</div>
+        <h1>Река <em>Фонтанка</em></h1>
+        <p class="deck">6,7 километров воды в самом центре Петербурга — история, литература и место, куда хочется возвращаться</p>
+      </div>
+
+      <div class="s1-cols">
+        <div class="s1-col">
+          <div class="ph-box" style="width:100%; aspect-ratio:3/4; margin-bottom:7px;">
+            <div class="ph-inner"><span>Вид с моста на Фонтанку</span></div>
+            <div class="ph-cap">Набережная Фонтанки</div>
+          </div>
+        </div>
+        <div class="col-rule"></div>
+        <div class="s1-col">
+          <p class="drop">Фонтанка — одна из самых известных рек Петербурга. Она течёт через весь центр города: мимо старых дворцов, театров и парков. Длина реки — всего 6,7 километра, но на этом пути она проходит под пятнадцатью мостами.</p>
+          <p>Название «Фонтанка» появилось в XVIII веке. Тогда рядом с рекой находился Летний сад с фонтанами Петра Первого — вот откуда это слово.</p>
+          <div class="pull-quote"><p>«Фонтанка — это не просто река. Это адрес Петербурга.»</p></div>
+        </div>
+        <div class="col-rule"></div>
+        <div class="s1-col">
+          <div class="ph-box" style="width:100%; aspect-ratio:5/4; margin-bottom:7px;">
+            <div class="ph-inner"><span>Аничков мост — главный мост через Фонтанку</span></div>
+            <div class="ph-cap">Аничков мост · Невский пр.</div>
+          </div>
+          <p style="font-size:.42em; line-height:1.6;">Самый известный мост через Фонтанку — Аничков, с четырьмя скульптурами коней. Он стоит прямо на Невском проспекте.</p>
+        </div>
+      </div>
+
+      <div class="s1-footer">
+        <span>По дороге от Ломо до Невского</span>
+        <span>Читайте дальше →</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SLIDE 2 ══ -->
+  <section>
+    <div class="page">
+      <div class="s2-head">
+        <span class="sec">География</span>
+        <h2>Где находится Фонтанка?</h2>
+      </div>
+      <div class="s2-body">
+        <div class="s2-left">
+          <div class="stat-num">6,7 км</div>
+          <div class="stat-label">Длина реки — от Невы до Невы</div>
+          <div class="stat-num">15</div>
+          <div class="stat-label">Мостов через Фонтанку</div>
+          <div class="stat-num">XIX в.</div>
+          <div class="stat-label">Дворцы и набережные построены в основном в XIX веке</div>
+          <div class="pull-quote">
+            <p>Фонтанка — боковой рукав Невы. Начинается у Летнего сада и заканчивается у Финского залива.</p>
+          </div>
+        </div>
+        <div class="col-rule"></div>
+        <div class="s2-right">
+          <div class="ph-box" style="width:100%; aspect-ratio:4/3; margin-bottom:10px;">
+            <div class="ph-inner"><span>Карта — Фонтанка на плане Петербурга</span></div>
+            <div class="ph-cap">Карта центра города</div>
+          </div>
+          <p class="body-text">Фонтанка находится <strong>в самом центре</strong> Санкт-Петербурга. Рядом с рекой — Невский проспект, Летний сад, Михайловский замок и Аничков дворец.</p>
+          <p class="body-text">Набережная Фонтанки — популярное место для прогулок. Здесь красиво в любое время года.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SLIDE 3 ══ -->
+  <section>
+    <div class="page">
+      <div class="s3-head">
+        <span class="sec">История</span>
+        <h2>Откуда такое название?</h2>
+      </div>
+      <div class="s3-body">
+        <div class="s3-left">
+          <div class="tl-item">
+            <div class="tl-year">XVII в.</div>
+            <div class="tl-line"></div>
+            <div class="tl-text"><strong>«Безымянный ерик»</strong>Раньше у реки не было красивого имени — просто безымянный канал.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-year">1704</div>
+            <div class="tl-line"></div>
+            <div class="tl-text"><strong>Летний сад</strong>Пётр Первый основал Летний сад рядом с рекой. Там работали фонтаны.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-year">1726</div>
+            <div class="tl-line"></div>
+            <div class="tl-text"><strong>Новое название</strong>«Фонтанная река» — из-за фонтанов Петра. Потом просто «Фонтанка».</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-year">XIX в.</div>
+            <div class="tl-line"></div>
+            <div class="tl-text"><strong>Расцвет набережной</strong>На берегах появились дворцы, театры и дома знатных семей.</div>
+          </div>
+        </div>
+        <div class="col-rule"></div>
+        <div class="s3-right">
+          <div class="ph-box" style="width:100%; aspect-ratio:3/2; margin-bottom:12px;">
+            <div class="ph-inner"><span>Летний сад — вид со стороны Фонтанки</span></div>
+            <div class="ph-cap">Летний сад, XVIII век</div>
+          </div>
+          <div style="display:flex; gap:10px; align-items:flex-start;">
+            <div class="ph-box" style="width:45%; aspect-ratio:1; transform:rotate(-1.6deg); flex-shrink:0;">
+              <div class="ph-inner"><span>Старая карта Петербурга</span></div>
+              <div class="ph-cap">Карта 1720-х</div>
+            </div>
+            <p style="font-size:.42em; line-height:1.6; flex:1; padding-top:3px;">Название «Фонтанка» — от слова <em>фонтан</em>. Редкий случай: река получила имя из-за объектов рядом, а не из-за своей природы.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SLIDE 4 ══ -->
+  <section>
+    <div class="page">
+      <div class="s4-head">
+        <h2>«Белые ночи» Достоевского</h2>
+        <div class="book-tag">Ф. М. Достоевский · 1848<br>Повесть · набережная Фонтанки</div>
+      </div>
+      <div class="s4-body">
+        <div class="s4-col">
+          <div class="block-q">
+            <q>Это была ночь удивительная, такая ночь, которая разве только и может быть в то время, когда мы молоды...</q>
+            <span class="attr">Ф. М. Достоевский, «Белые ночи»</span>
+          </div>
+          <p class="body-text">«Белые ночи» — одна из самых известных повестей Достоевского. Главный герой — одинокий мечтатель, который живёт в Петербурге.</p>
+          <p class="body-text">Каждый вечер он гуляет по набережной Фонтанки. Там он встречает девушку Настеньку.</p>
+        </div>
+        <div class="col-rule"></div>
+        <div class="s4-col">
+          <p class="body-text">«Белые ночи» — это июньские ночи в Петербурге, когда почти нет темноты. Небо остаётся светлым даже в полночь.</p>
+          <p class="body-text">Достоевский точно описал атмосферу Петербурга летом: тихие улицы, вода в каналах, запах реки. Именно Фонтанка — главное место действия повести.</p>
+          <div class="pull-quote">
+            <p>Набережная Фонтанки — место, где начинается история, и место, куда хочется вернуться.</p>
+          </div>
+        </div>
+        <div class="col-rule"></div>
+        <div class="s4-col">
+          <div class="ph-box" style="width:100%; aspect-ratio:2/3;">
+            <div class="ph-inner"><span>Обложка книги «Белые ночи»</span></div>
+            <div class="ph-cap">Издание повести · 1848</div>
+          </div>
+          <p style="font-size:.39em; line-height:1.55; color:var(--caption); margin-top:6px;">Повесть написана в 1848 году. В 1957 году режиссёр Висконти снял по ней фильм.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SLIDE 5 ══ -->
+  <section>
+    <div class="page">
+      <div class="s5-head">
+        <div class="overline">Сегодня</div>
+        <h2>Что можно делать на Фонтанке?</h2>
+      </div>
+      <div class="s5-body">
+        <div class="s5-act">
+          <div class="act-head">Гулять по набережной</div>
+          <p class="body-text">Набережная Фонтанки — хорошее место для прогулки в любое время года. Здесь всегда есть что посмотреть: старые дома, мосты, театры и кафе.</p>
+          <div class="ph-box" style="width:100%; aspect-ratio:4/3; margin-top:10px;">
+            <div class="ph-inner"><span>Набережная — прогулка летом</span></div>
+            <div class="ph-cap">Набережная летом</div>
+          </div>
+        </div>
+        <div class="col-rule"></div>
+        <div class="s5-act">
+          <div class="act-head">Бегать зимой</div>
+          <p class="body-text">Зимой набережная почти пустая — и это идеально. Холодный воздух, снег на мостах, тишина. Бег по Фонтанке зимой — особенное ощущение.</p>
+          <div class="ph-box" style="width:100%; aspect-ratio:4/3; margin-top:10px;">
+            <div class="ph-inner"><span>Набережная зимой — снег, мост</span></div>
+            <div class="ph-cap">Зима на Фонтанке</div>
+          </div>
+        </div>
+        <div class="col-rule"></div>
+        <div class="s5-act">
+          <div class="act-head">Отдыхать у воды</div>
+          <p class="body-text">Иногда достаточно просто сесть на скамейку, посмотреть на воду и ничего не делать. Река помогает думать.</p>
+          <p class="body-text">Летом — лодки. Осенью — жёлтые листья на воде. Каждый сезон здесь по-своему красив.</p>
+          <div class="ph-box" style="width:100%; aspect-ratio:4/3; margin-top:10px;">
+            <div class="ph-inner"><span>Скамейки у воды — осень</span></div>
+            <div class="ph-cap">Осень на Фонтанке</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SLIDE 6 ══ -->
+  <section>
+    <div class="page">
+      <div class="s6-body">
+        <div class="s6-left">
+          <div class="overline">Почему Фонтанка?</div>
+          <h2>Место, где можно<br><em>перезарядиться</em></h2>
+          <p class="s6-close">Фонтанка — это не просто достопримечательность. Это место, куда хочется возвращаться. После занятий, после трудного дня, просто так.</p>
+          <p class="s6-close">Здесь гулял Достоевский, здесь стоят старые дворцы, здесь начинаются «Белые ночи». И здесь, зимой, когда набережная пустая и холодная — бежишь и чувствуешь себя живым.</p>
+          <div class="pull-quote">
+            <p>«В пяти минутах ходьбы от Фонтанки находится весь Петербург, который важен.»</p>
+          </div>
+        </div>
+        <div class="col-rule"></div>
+        <div class="s6-right">
+          <div class="ph-box" style="width:100%; aspect-ratio:3/4; transform:rotate(1.1deg);">
+            <div class="ph-inner"><span>Фонтанка ночью — огни в воде</span></div>
+            <div class="ph-cap">Ночная Фонтанка</div>
+          </div>
+        </div>
+      </div>
+      <div class="s6-footer">
+        <span>Река Фонтанка · Санкт-Петербург</span>
+        <span class="red">— Конец —</span>
+        <span>Достопримечательности СПб · Урок X</span>
+      </div>
+    </div>
+  </section>
+
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    transition: 'none',
+    controls: true,
+    progress: false,
+    center: false,
+    width: 1280,
+    height: 720,
+    margin: 0,
+    plugins: [RevealNotes]
+  });
+</script>
+</body>
+</html>
