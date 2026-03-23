@@ -82,7 +82,7 @@ class ChallengeClient:
     def get_budget(self) -> dict:
         resp = requests.get(
             f"{self.api_url}/task1/budget",
-            headers=self._headers_api_key(),
+            headers=self._headers_jwt(),
         )
         resp.raise_for_status()
         return resp.json()
